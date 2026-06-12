@@ -58,10 +58,6 @@ export class Circle extends BaseFigure implements Figure {
   ) {
     super();
     this.validateLengths([radius]);
-
-    if (radius < 0) {
-      throw new Error();
-    }
   }
 
   getArea(): number {
@@ -84,7 +80,9 @@ export class Rectangle extends BaseFigure implements Figure {
   }
 
   getArea(): number {
-    return this.width * this.height;
+    const area = this.width * this.height;
+
+    return this.floorToHundredths(area);
   }
 }
 
