@@ -24,15 +24,17 @@ export class Triangle extends BaseFigure implements Figure {
 
   constructor(
     public color: Color,
-    public a: number,
-    public b: number,
-    public c: number,
+    private a: number,
+    private b: number,
+    private c: number,
   ) {
     super();
     this.validateLengths([a, b, c]);
 
-    if (a + b <= c || a + c <= b || b + c <= a) {
-      throw new Error(`sides ${a}, ${b} and ${c} can't form a triangle`);
+    const max = Math.max(a, b, c);
+
+    if (max >= a + b + c - max) {
+      throw new Error(`Sides ${a}, ${b} and ${c} can't form a triangle`);
     }
   }
 
@@ -54,7 +56,7 @@ export class Circle extends BaseFigure implements Figure {
 
   constructor(
     public color: Color,
-    public radius: number,
+    private radius: number,
   ) {
     super();
     this.validateLengths([radius]);
@@ -72,8 +74,8 @@ export class Rectangle extends BaseFigure implements Figure {
 
   constructor(
     public color: Color,
-    public width: number,
-    public height: number,
+    private width: number,
+    private height: number,
   ) {
     super();
     this.validateLengths([width, height]);
